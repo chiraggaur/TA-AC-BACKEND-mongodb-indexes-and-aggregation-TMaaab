@@ -2,17 +2,27 @@ writeCode
 
 Insert the data present in users.json into local mongodb database using `mongoimport` into a database called sample and collection named as users.
 
+// command
+mongoimport --db dbName --collection collectionName --file fileName.json --jsonArray inside the exact folder where file lies;
+
 Write aggregation queries to perform following tasks.
 
 1. Find all users who are active.
 
+// db.users.aggregate([{$match:{isActive : true}}]);
+
 2. Find all users whose name includes `blake` case insensitive.
+   // db.users.aggregate([{$group:{name : "blake"}}]); // doubt
 
 3. Find all males.
+   // db.users.aggregate([{$match:{gender : "male"}}]);
 
 4. Find all active males.
 
+//db.users.aggregate([{$match : {gender : "male",isActive :true}}]);
+
 5. Find all active females whose age is >= 25.
+   db.users.aggregate([{$match : {gender : "male"}},{$group : {age : {$min }}}]);
 
 6. Find all 40+ males with green eyecolor.
 
