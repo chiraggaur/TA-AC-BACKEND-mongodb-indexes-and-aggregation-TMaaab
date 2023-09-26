@@ -16,4 +16,7 @@ userSchema.index({ title: "text" });
 // 3. Update text indexes to include descriptions as well. Implement text indexes on both title and description.
 userSchema.index({ title: "text", description: "text" });
 
+// to find as per speific text
+userSchema.find({ $text: { $search: "any text" } });
+
 module.exports = mongoose.model("Article", userSchema); // collection
